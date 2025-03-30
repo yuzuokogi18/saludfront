@@ -191,35 +191,131 @@ body {
       margin-top: 15px !important;
       width: 100%;
     }
-    .create-patient-container {
+    .create-user-container {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        justify-content: flex-start;
         height: 100vh;
-      }
-      /* styles/CreatePatientForm.css */
-.form-container {
-    text-align: center;
-  }
-  
-  .form-box {
-    border: 1px solid #ccc;
+        background-color: #f4f4f4;
+        padding-top: 50px; /* Ajusta según necesidad */
+    }
+    
+    .title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #002c77;
+        margin-bottom: 20px;
+    }
+    
+    .form-container {
+        padding: 30px;
+        width: 400px;
+        text-align: center;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .subtitle {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #002c77;
+        margin-bottom: 15px;
+    }
+    
+    label {
+        display: block;
+        font-weight: bold;
+        color: #002c77;
+        text-align: left;
+        margin-top: 10px;
+    }
+    
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+    
+    .submit-button {
+        background-color: #007bff !important;
+        color: white !important;
+        font-weight: bold !important;
+        margin-top: 15px !important;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .submit-button:hover {
+        background-color: #0056b3 !important;
+    }
+    /* 📌 CONTENEDOR GENERAL */
+.expedient-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f7fc;
+}
+
+.expedient-container {
+    width: 90%;
+    max-width: 1200px;
+    background: white;
     padding: 20px;
-    display: inline-block;
-    width: 300px;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 🔵 HEADER */
+.expedient-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+
+.patient-form-container {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: white;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  .form-box h3 {
-    color: #004080;
-    font-weight: bold;
+  h2 {
+    color: #002c77;
+    margin-bottom: 15px;
   }
   
   label {
     display: block;
-    margin-top: 10px;
+    text-align: left;
     font-weight: bold;
+    color: #1e3a8a;
+    margin-top: 10px;
   }
   
   input {
@@ -228,20 +324,124 @@ body {
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 1rem;
   }
   
-  .submit-button {
-    margin-top: 15px;
-    padding: 10px;
-    width: 100%;
+  .edit-button {
     background-color: #007bff;
     color: white;
+    font-weight: bold;
     border: none;
+    padding: 10px;
+    width: 100%;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 15px;
   }
   
-  .submit-button:hover {
+  .edit-button:hover {
     background-color: #0056b3;
+  }
+  /* 📌 Estilos generales */
+.patient-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+  }
+  
+  h2 {
+    color: #002c77;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-top: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .edit-btn {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .edit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* 📌 Contenedor general */
+  .vitals-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  /* 📌 Tarjeta de signos vitales */
+  .vital-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+  }
+  
+  .vital-title {
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-bottom: 5px;
+  }
+  
+  .vital-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #002c77;
+  }
+  
+  .vital-unit {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* 📌 Indicadores de estado */
+  .status-indicator {
+    width: 20px;
+    height: 10px;
+    border-radius: 5px;
+    margin: 5px auto;
+  }
+  
+  .status-green {
+    background-color: #28a745;
+  }
+  
+  .status-yellow {
+    background-color: #ffc107;
+  }
+  
+  .status-red {
+    background-color: #dc3545;
   }
   

@@ -19,11 +19,11 @@ export const Sidebar: React.FC = () => {
         </li>
 
         <Link to="/expediente" className="menu-item">
-          <li>
-            <img src="/assets/expediente.png" alt="Expediente" />
-            <span>EXPEDIENTE</span>
-          </li>
-        </Link>
+  <li>
+    <img src="/assets/expediente.png" alt="Expediente" />
+    <span>EXPEDIENTE</span>
+  </li>
+</Link>
 
         <li>
           <img src="/assets/historial.png" alt="Historial" />

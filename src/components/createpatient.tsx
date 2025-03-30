@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { CreatePatient } from "../patients/application/create_patients";
 import { PatientRepository } from "../patients/infrastructure/PatientRepository";
+import "../styles/home.css"; // Importa tu archivo de estilos
 
 export default function CreatePatientForm() {
   const [formData, setFormData] = useState({
@@ -37,29 +38,27 @@ export default function CreatePatientForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
-      <h2>Crear Expediente</h2>
-      <div style={{ border: "1px solid #ccc", padding: "20px", display: "inline-block" }}>
-        <h3>DATOS PERSONALES</h3>
+    <div className="create-user-container">
+      <h2 className="title">Crear Expediente</h2>
+      <form onSubmit={handleSubmit} className="form-container">
+        <h3 className="subtitle">DATOS PERSONALES</h3>
         <label>Nombre:</label>
         <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} required />
-        <br />
+        
         <label>Apellido:</label>
         <input type="text" name="apellido" value={formData.apellido} onChange={handleChange} required />
-        <br />
+        
         <label>Edad:</label>
         <input type="number" name="edad" value={formData.edad} onChange={handleChange} required />
-        <br />
+        
         <label>Género:</label>
         <input type="text" name="genero" value={formData.genero} onChange={handleChange} required />
-        <br />
+        
         <label>Número Tel:</label>
         <input type="text" name="numeroContacto" value={formData.numeroContacto} onChange={handleChange} required />
-        <br />
-        <button type="submit" style={{ marginTop: "10px", padding: "10px", backgroundColor: "#007BFF", color: "white", border: "none" }}>
-          CREAR
-        </button>
-      </div>
-    </form>
+        
+        <button type="submit" className="submit-button">CREAR</button>
+      </form>
+    </div>
   );
 }

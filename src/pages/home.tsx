@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { HealthCard } from "../components/HealthCard";
+import { getAllCases } from "../cases/application/get_all_case";
+import { Case } from "../cases/domain/Case";
+import "../styles/home.css";
 
 export const Dashboard: React.FC = () => {
+  const [patientData, setPatientData] = useState<Case | null>(null);
+
+  useEffect(() => {
+    const fetchPatientData = async () => {
+      try {
+        const cases = await getAllCases();
+        if (cases.length > 0) {
+          setPatientData(cases[cases.length - 1]); // Último caso registrado
+        }
+      } catch (error) {
+        console.error("Error obteniendo datos del paciente", error);
+      }
+    };
+
+    fetchPatientData();
+  }, []);
+
   return (
     <div className="dashboard">
       <Sidebar />
@@ -10,7 +30,6 @@ export const Dashboard: React.FC = () => {
         <h1>Monitor de Salud Personal</h1>
         <p>Seguimiento de tus signos vitales</p>
 
-        {/* Indicadores de estados */}
         <div className="status-indicators">
           <div className="status optimo">
             <span></span> Estado Óptimo
@@ -25,10 +44,16 @@ export const Dashboard: React.FC = () => {
 
         {/* Tarjetas de información */}
         <div className="health-grid">
-          <HealthCard title="Peso" value="87 KG" status="alerta" description="Sobrepeso!!" />
-          <HealthCard title="Altura" value="1.55 CM" status="optimo" description="Altura Adecuada" />
-          <HealthCard title="Ritmo Cardiaco" value="87" status="alerta" description="Ritmo cardíaco es irregular" />
-          <HealthCard title="Temperatura" value="36.8°C" status="critico" description="Temperatura corporal en nivel crítico" />
+          {patientData ? (
+            <>
+              <HealthCard title="Peso" value={`${patientData.peso} KG`} status="alerta" description="Peso registrado" />
+              <HealthCard title="Altura" value={`${patientData.estatura} CM`} status="optimo" description="Altura registrada" />
+              <HealthCard title="Ritmo Cardiaco" value={`${patientData.ritmoCardiaco} BPM`} status="alerta" description="Ritmo cardíaco actual" />
+              <HealthCard title="Temperatura" value={`${patientData.temperatura}°C`} status="critico" description="Temperatura corporal" />
+            </>
+          ) : (
+            <p>Cargando datos del paciente...</p>
+          )}
         </div>
       </div>
     </div>

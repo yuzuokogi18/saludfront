@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Dashboard } from './pages/home';
-import CreatePa from './pages/createpa'; // Importa la página del formulario
+import CreatePa from './pages/createpa';
+import Expedient from './components/expedient';
 import './styles/home.css';
 
 export const App: React.FC = () => {
@@ -9,7 +10,8 @@ export const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/crear-expediente" element={<CreatePa />} /> {/* Nueva ruta */}
+        <Route path="/crear-expediente" element={<CreatePa />} />
+        <Route path="/expediente" element={<Expedient />} /> {/* Nueva ruta */}
       </Routes>
     </Router>
   );
