@@ -1,0 +1,247 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dashboard {
+    display: flex;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .main-content h1 {
+    font-size: 2.8rem; /* Aumenta ligeramente el tamaño */
+    color: #002c77;
+    margin-top: 10px; /* Pequeño margen superior */
+    margin-bottom: 5px;
+  }
+  
+  
+  .main-content p {
+    font-size: 1.6rem; /* Aumentamos el tamaño */
+    color: #002c77; /* Azul */
+    font-weight: bold; /* Opcional para que resalte más */
+    margin-bottom: 20px;
+  }
+  
+  
+  /* ======= ESTADOS (Óptimo, Alerta, Crítico) ======= */
+  .status-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 130px; /* Aumenta la separación entre indicadores */
+    margin: 35px 0; /* Margen arriba y abajo */
+  }
+  
+  
+  .status {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem; /* Tamaño de fuente aumentado */
+    font-weight: bold;
+  }
+  
+  .status span {
+    width: 30px;  /* Aumentado */
+    height: 30px; /* Aumentado */
+    border-radius: 8px; /* Más redondeado */
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .optimo span { background-color: #4CAF50; }  /* Verde */
+  .alerta span { background-color: #FFD700; }  /* Amarillo */
+  .critico span { background-color: #FF4C4C; }  /* Rojo */
+  
+  /* ======= TARJETAS ======= */
+  .health-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0 10%;
+  }
+  
+  .health-card {
+    border: 2px solid #ccc;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .health-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .health-card h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .health-card h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .health-card p {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .optimo { border-left: 5px solid #4CAF50; }  /* Verde */
+  .alerta { border-left: 5px solid #FFD700; }  /* Amarillo */
+  .critico { border-left: 5px solid #FF4C4C; }  /* Rojo */
+  
+  
+    .sidebar {
+      width: 240px; /* Un poco más ancho para acomodar las imágenes */
+      background: white;
+      border-right: 2px solid #002c77;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+    
+    .sidebar-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .logo {
+      width: 140px; /* Logo más grande */
+      height: auto;
+      margin-bottom: 10px;
+    }
+    
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+    
+    .sidebar-menu li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px; /* Espaciado mejorado */
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+    
+    .sidebar-menu li:hover {
+      transform: scale(1.08);
+    }
+    
+    .sidebar-menu li img {
+      width: 110px; /* Imágenes más grandes */
+      height: auto;
+      margin-bottom: 5px; /* Más separación con el texto */
+    }
+    
+    .sidebar-menu li span {
+      color: #002c77;
+      font-weight: bold;
+      font-size: 16px; 
+      text-align: center;
+      line-height: 1.2;
+    }
+    
+    
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #002c77;
+      margin-bottom: 20px;
+    }
+    
+    .form-container {
+      padding: 30px;
+      width: 400px;
+      text-align: center;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .subtitle {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #002c77;
+      margin-bottom: 15px;
+    }
+    
+    .submit-button {
+      background-color: #007bff !important;
+      color: white !important;
+      font-weight: bold !important;
+      margin-top: 15px !important;
+      width: 100%;
+    }
+    .create-patient-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      /* styles/CreatePatientForm.css */
+.form-container {
+    text-align: center;
+  }
+  
+  .form-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    display: inline-block;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-box h3 {
+    color: #004080;
+    font-weight: bold;
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
