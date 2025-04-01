@@ -4,7 +4,7 @@ import { patientApi } from "./patientApi";
 
 export class PatientRepository implements IPatientRepository {
   async getAllPatients(): Promise<Patient[]> {
-    const response = await patientApi.get("/patients");
+    const response = await patientApi.get("/");
     return response.data.map(
       (p: any) =>
         new Patient(
@@ -19,7 +19,7 @@ export class PatientRepository implements IPatientRepository {
   }
 
   async getPatientById(idUsuario: number): Promise<Patient | null> {
-    const response = await patientApi.get(`/patients/${idUsuario}`);
+    const response = await patientApi.get(`/${idUsuario}`);
     return response.data
       ? new Patient(
           response.data.id_usuario,
@@ -32,10 +32,9 @@ export class PatientRepository implements IPatientRepository {
       : null;
   }
 
-  async createPatient(
-    patientData: Omit<Patient, "idUsuario">
-  ): Promise<Patient> {
-    const response = await patientApi.post("/patients", patientData);
+  async createPatient(patientData: Omit<Patient, "idUsuario">): Promise<Patient> {
+    const response = await patientApi.post("/", patientData);
+    console.log("Respuesta de la API en createPatient:", response.data); // 🔹 Log para depuración
     return new Patient(
       response.data.id_usuario,
       response.data.nombre,
@@ -50,7 +49,7 @@ export class PatientRepository implements IPatientRepository {
     idUsuario: number,
     updates: Partial<Omit<Patient, "idUsuario">>
   ): Promise<Patient> {
-    const response = await patientApi.put(`/patients/${idUsuario}`, updates);
+    const response = await patientApi.put(`/${idUsuario}`, updates);
     return new Patient(
       response.data.id_usuario,
       response.data.nombre,
@@ -62,6 +61,6 @@ export class PatientRepository implements IPatientRepository {
   }
 
   async deletePatient(idUsuario: number): Promise<void> {
-    await patientApi.delete(`/patients/${idUsuario}`);
+    await patientApi.delete(`/${idUsuario}`);
   }
 }

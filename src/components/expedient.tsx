@@ -51,7 +51,7 @@ const PatientVitals: React.FC = () => {
           <input type="text" value={`${patient.edad} AÑOS`} readOnly />
 
           <label>NUM TEL:</label>
-          <input type="text" value={patient.numeroContacto} readOnly />
+          <input type="text" value={patient.numero_contacto} readOnly />
         </>
       )}
       <button className="edit-btn">EDITAR</button>

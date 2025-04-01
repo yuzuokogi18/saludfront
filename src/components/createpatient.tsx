@@ -9,7 +9,7 @@ export default function CreatePatientForm() {
     apellido: "",
     edad: "",
     genero: "",
-    numeroContacto: "",
+    numeroContacto: "", // 🔹 Ahora coincide con el name del input
   });
 
   const patientRepository = new PatientRepository();
@@ -27,9 +27,12 @@ export default function CreatePatientForm() {
         apellido: formData.apellido,
         edad: Number(formData.edad),
         genero: formData.genero,
-        numeroContacto: formData.numeroContacto,
+        numero_contacto: formData.numeroContacto, // 🔹 Ahora coincide con la estructura esperada
       });
+
       alert("Paciente creado exitosamente");
+
+      // Reiniciar el formulario
       setFormData({ nombre: "", apellido: "", edad: "", genero: "", numeroContacto: "" });
     } catch (error) {
       console.error("Error al crear paciente", error);
@@ -42,21 +45,22 @@ export default function CreatePatientForm() {
       <h2 className="title">Crear Expediente</h2>
       <form onSubmit={handleSubmit} className="form-container">
         <h3 className="subtitle">DATOS PERSONALES</h3>
+
         <label>Nombre:</label>
         <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} required />
-        
+
         <label>Apellido:</label>
         <input type="text" name="apellido" value={formData.apellido} onChange={handleChange} required />
-        
+
         <label>Edad:</label>
         <input type="number" name="edad" value={formData.edad} onChange={handleChange} required />
-        
+
         <label>Género:</label>
         <input type="text" name="genero" value={formData.genero} onChange={handleChange} required />
-        
+
         <label>Número Tel:</label>
         <input type="text" name="numeroContacto" value={formData.numeroContacto} onChange={handleChange} required />
-        
+
         <button type="submit" className="submit-button">CREAR</button>
       </form>
     </div>
