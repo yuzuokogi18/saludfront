@@ -9,6 +9,7 @@ import "../styles/home.css";
 const PatientVitals: React.FC = () => {
   const [patient, setPatient] = useState<Patient | null>(null);
   const [caseData, setCaseData] = useState<Case | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const fetchPatient = async () => {
@@ -16,7 +17,10 @@ const PatientVitals: React.FC = () => {
         const patientRepository = new PatientRepository();
         const patientsService = new GetAllPatients(patientRepository);
         const patientsData = await patientsService.execute();
-        setPatient(patientsData[0]);
+
+        if (patientsData.length > 0) {
+          setPatient(patientsData[patientsData.length - 1]);
+        }
       } catch (error) {
         console.error("Error fetching patient data:", error);
       }
@@ -26,7 +30,7 @@ const PatientVitals: React.FC = () => {
       try {
         const caseRepository = new CaseRepository();
         const cases = await caseRepository.getAllCases();
-        setCaseData(cases[0]);
+        setCaseData(cases.length > 0 ? cases[0] : null);
       } catch (error) {
         console.error("Error fetching case data:", error);
       }
@@ -36,51 +40,126 @@ const PatientVitals: React.FC = () => {
     fetchCaseData();
   }, []);
 
+  const handleEditClick = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (patient) {
+      setPatient({
+        ...patient,
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
+
+  const handleSave = async () => {
+    if (patient) {
+      try {
+        console.log("Datos enviados al actualizar paciente:", {
+          nombre: patient.nombre,
+          apellido: patient.apellido,
+          edad: Number(patient.edad),
+          numero_contacto: patient.numero_contacto,
+        });
+
+        const patientRepository = new PatientRepository();
+        await patientRepository.updatePatient(patient.idUsuario, {
+          nombre: patient.nombre,
+          apellido: patient.apellido,
+          edad: Number(patient.edad),
+          numero_contacto: patient.numero_contacto,
+        });
+
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Error updating patient data:", error);
+        if (error.response) {
+          console.error("Respuesta del servidor:", error.response.data);
+        }
+      }
+    }
+  };
+
   return (
-    <div className="patient-container">
-      <h2>DATOS PERSONALES</h2>
-      {patient && (
-        <>
+    <>
+    <h1 className="title-centered">
+  <img src="/assets/expedient.png" alt="Icono" className="title-icon" />
+  EXPEDIENTE
+</h1>
+{patient && (
+      <div className="patient-info-container">
+        {/* Contenedor del formulario */}
+        <div className="patient-form-container">
+          <h2>DATOS PERSONALES</h2>
           <label>NOMBRE:</label>
-          <input type="text" value={patient.nombre} readOnly />
-
+          <input
+            type="text"
+            name="nombre"
+            value={patient.nombre}
+            onChange={handleInputChange}
+            readOnly={!isEditing}
+          />
           <label>APELLIDO:</label>
-          <input type="text" value={patient.apellido} readOnly />
-
+          <input
+            type="text"
+            name="apellido"
+            value={patient.apellido}
+            onChange={handleInputChange}
+            readOnly={!isEditing}
+          />
           <label>EDAD:</label>
-          <input type="text" value={`${patient.edad} AÑOS`} readOnly />
-
+          <input
+            type="number"
+            name="edad"
+            value={patient.edad}
+            onChange={handleInputChange}
+            readOnly={!isEditing}
+          />
           <label>NUM TEL:</label>
-          <input type="text" value={patient.numero_contacto} readOnly />
-        </>
-      )}
-      <button className="edit-btn">EDITAR</button>
-      
-      <h2>SIGNOS VITALES</h2>
-      <div className="vital-cards">
-        {caseData && (
-          <>
-            <div className="vital-card">
-              <h3>TEMPERATURA</h3>
-              <p>{caseData.temperatura} °C</p>
-            </div>
-            <div className="vital-card">
-              <h3>PESO</h3>
-              <p>{caseData.peso} KG</p>
-            </div>
-            <div className="vital-card">
-              <h3>ALTURA</h3>
-              <p>{caseData.estatura} CM</p>
-            </div>
-            <div className="vital-card">
-              <h3>RITMO CARDIACO</h3>
-              <p>{caseData.ritmoCardiaco} BPM</p>
-            </div>
-          </>
-        )}
+          <input
+            type="text"
+            name="numero_contacto"
+            value={patient.numero_contacto}
+            onChange={handleInputChange}
+            readOnly={!isEditing}
+          />
+          <button
+            className="edit-btn"
+            onClick={isEditing ? handleSave : handleEditClick}
+          >
+            {isEditing ? "GUARDAR" : "EDITAR"}
+          </button>
+        </div>
+
+        
+        <div className="vital-cards">
+          <h2>SIGNOS VITALES</h2>
+          {caseData && (
+            <>
+              <div className="vital-card">
+                <h3>TEMPERATURA</h3>
+                <p>{caseData.temperatura} °C</p>
+              </div>
+              <div className="vital-card">
+                <h3>PESO</h3>
+                <p>{caseData.peso} KG</p>
+              </div>
+              <div className="vital-card">
+                <h3>ALTURA</h3>
+                <p>{caseData.estatura} CM</p>
+              </div>
+              <div className="vital-card">
+                <h3>RITMO CARDIACO</h3>
+                <p>{caseData.ritmoCardiaco} BPM</p>
+              </div>
+            </>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    )}
+  </>
+);
 };
 
 export default PatientVitals;
