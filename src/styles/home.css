@@ -99,13 +99,13 @@ body {
     margin-top: 5px;
   }
   
-  .optimo { border-left: 5px solid #4CAF50; }  /* Verde */
-  .alerta { border-left: 5px solid #FFD700; }  /* Amarillo */
-  .critico { border-left: 5px solid #FF4C4C; }  /* Rojo */
+  .optimo { border-left: 5px solid #4CAF50; }  
+  .alerta { border-left: 5px solid #FFD700; }
+  .critico { border-left: 5px solid #FF4C4C; }  
   
   
     .sidebar {
-      width: 240px; /* Un poco más ancho para acomodar las imágenes */
+      width: 240px; 
       background: white;
       border-right: 2px solid #002c77;
       min-height: 100vh;
@@ -121,7 +121,7 @@ body {
     }
     
     .logo {
-      width: 140px; /* Logo más grande */
+      width: 140px;
       height: auto;
       margin-bottom: 10px;
     }
@@ -137,7 +137,7 @@ body {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-bottom: 25px; /* Espaciado mejorado */
+      margin-bottom: 25px; 
       cursor: pointer;
       transition: transform 0.2s ease-in-out;
     }
@@ -147,9 +147,9 @@ body {
     }
     
     .sidebar-menu li img {
-      width: 110px; /* Imágenes más grandes */
+      width: 110px;
       height: auto;
-      margin-bottom: 5px; /* Más separación con el texto */
+      margin-bottom: 25px; 
     }
     
     .sidebar-menu li span {
@@ -161,396 +161,41 @@ body {
     }
     
     
-    .title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #002c77;
-      margin-bottom: 20px;
+    .logo-container {
+      display: flex;
+      justify-content: center; /* Centra el logo horizontalmente */
+      align-items: center; /* Centra el logo verticalmente */
+      padding: 2px; /* Espaciado alrededor del logo */
+      margin-top: -40px; /* Mueve el logo más arriba */
     }
     
-    .form-container {
-      padding: 30px;
-      width: 400px;
-      text-align: center;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    .logo-container img {
+      max-width: 145px; /* Ajusta el tamaño máximo del logo */
+      height: auto; /* Mantiene la proporción original */
+    }
+    .patient-selection {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: row; /* horizontal */
+      align-items: center;
+      gap: 1rem;
+      justify-content: flex-start; /* alineado a la izquierda */
     }
     
-    .subtitle {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #002c77;
-      margin-bottom: 15px;
+    .patient-selection label {
+      font-size: 0.9rem;
+      width: auto;
+      min-width: 100px;
     }
     
-    .submit-button {
-      background-color: #007bff !important;
-      color: white !important;
-      font-weight: bold !important;
-      margin-top: 15px !important;
-      width: 100%;
-    }
-    .create-user-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        height: 100vh;
-        background-color: #f4f4f4;
-        padding-top: 50px; /* Ajusta según necesidad */
+    .patient-selection select {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      width: 180px;
     }
     
-    .title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #002c77;
-        margin-bottom: 20px;
+    .patient-selection button {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.9rem;
     }
     
-    .form-container {
-        padding: 30px;
-        width: 400px;
-        text-align: center;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .subtitle {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #002c77;
-        margin-bottom: 15px;
-    }
-    
-    label {
-        display: block;
-        font-weight: bold;
-        color: #002c77;
-        text-align: left;
-        margin-top: 10px;
-    }
-    
-    input {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 1rem;
-    }
-    
-    .submit-button {
-        background-color: #007bff !important;
-        color: white !important;
-        font-weight: bold !important;
-        margin-top: 15px !important;
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    
-    .submit-button:hover {
-        background-color: #0056b3 !important;
-    }
-    /* 📌 CONTENEDOR GENERAL */
-.expedient-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f7fc;
-}
-
-.expedient-container {
-    width: 90%;
-    max-width: 1200px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* 🔵 HEADER */
-.expedient-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #1e3a8a;
-    margin-bottom: 20px;
-}
-
-.logo {
-    width: 50px;
-    height: 50px;
-}
-
-
-
-  h2 {
-    color: #002c77;
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    text-align: left;
-    font-weight: bold;
-    color: #1e3a8a;
-    margin-top: 10px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  .edit-button {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
-  }
-  
-  .edit-button:hover {
-    background-color: #0056b3;
-  }
-  /* 📌 Estilos generales */
-  .patient-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f4f4f4;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-  
-  h2 {
-    color: #002c77;
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-weight: bold;
-    color: #1e3a8a;
-    margin-top: 10px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  .edit-btn {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
-  }
-  
-  .edit-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  /* 📌 Contenedor general */
-  .vitals-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-  }
-  
-
-  .vital-title {
-    font-weight: bold;
-    color: #1e3a8a;
-    margin-bottom: 5px;
-  }
-  
-  .vital-value {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #002c77;
-  }
-  
-  .vital-unit {
-    font-size: 0.9rem;
-    color: #555;
-  }
-  
-  /* 📌 Indicadores de estado */
-  .status-indicator {
-    width: 20px;
-    height: 10px;
-    border-radius: 5px;
-    margin: 5px auto;
-  }
-  
-  .status-green {
-    background-color: #28a745;
-  }
-  
-  .status-yellow {
-    background-color: #ffc107;
-  }
-  
-  .status-red {
-    background-color: #dc3545;
-  }
-  .patient-form-container {
-    display: flex;
-    
-    flex-direction: column; 
-    align-items: flex-start; 
-    padding: 25px 25px 25px 25px; 
-    padding-right: 35px;
-    
-    margin-left: 65px; 
-    margin-top: 10px; 
-    background: white;
-    border-radius: 20px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    min-height: 450px;
-    
-  }
-  
-  .patient-form-container h2 {
-    text-align: center; 
-    width: 100%;
-  }
-  .patient-info-container {
-    display: flex;
-    justify-content: flex-start; 
-    align-items: flex-start;
-    gap: 55px; 
-}
-  .patient-form-container label {
-    display: block;
-    font-weight: bold;
-    color: #002c77;
-    text-align: left;
-    margin-top: 15px;
-    width: auto;
-    max-width: 200px;
-  }
-  
-  .patient-form-container input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 23px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  .patient-form-container .edit-btn {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    margin-top: 15px;
-    padding: 10px;
-    width: 104%;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .patient-form-container .edit-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .title-centered {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh; 
-    text-align: center;
-    color: rgb(30, 85, 152); 
-    font-size: 3.0rem; 
-    font-weight: bold; 
-    margin-bottom: 50px; 
-  }
-  
-  .title-icon {
-    width: 140px;  
-    height: auto;
-    margin-right: 1px; 
-  }
-  .vital-cards {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    background: white;
-    padding: 20px;
-    padding-bottom: 345px;
-    border-radius: 20px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    margin-top: 100px;
-    position: relative;
-  }
-  .vital-cards h2 {
-    text-align: center; 
-    width: 100%;
-    position: absolute; 
-    top: 20px; 
-    left: 50%;
-    transform: translateX(-50%);
-}
-  .vital-card {
-    background: #f8f8f8;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  .pdf-btn {
-    position: relative;
-    left: -430px;
-    margin-top: 20px; 
-    background-color: #00aaff;
-    color: white; 
-    font-size: 18px; 
-    padding: 12px 24px; 
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .pdf-btn:hover {
-    background-color: #0088cc;
-  }
-  

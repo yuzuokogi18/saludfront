@@ -1,7 +1,6 @@
 import React from "react";
 import Expedient from "../components/expedient";
-import "../styles/home.css"; // Importa el archivo CSS para estilos
-
+import "../styles/expedient.css";
 const Expedien: React.FC = () => {
   return (
     <div className="expedien-page">

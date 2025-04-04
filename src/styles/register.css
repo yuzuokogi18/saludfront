@@ -1,0 +1,123 @@
+.register-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f8f9fc;
+}
+
+.register-box {
+    display: flex;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 650px; /* Reducir el tamaño de la caja */
+    height: auto;
+}
+
+.register-image {
+    flex: 1;
+    background: url('/ruta-a-tu-imagen.png') no-repeat center center;
+    background-size: cover;
+}
+
+.register-form {
+    flex: 1;
+    padding: 30px; /* Reducir el padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.register-form h2 {
+    font-size: 22px; /* Reducir el tamaño del texto */
+    font-weight: bold;
+    margin-bottom: 15px; /* Reducir el margen */
+    text-align: center;
+    color: #333;
+}
+
+.register-form label {
+    font-size: 13px; /* Reducir el tamaño del texto */
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+.register-form input {
+    width: calc(100% - 20px); 
+    padding: 10px; /* Reducir el padding */
+    margin-bottom: 10px; /* Reducir el margen */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.register-form input:focus {
+    border-color: #3498db;
+}
+
+.register-form button {
+    width: 100%;
+    background: #3498db;
+    color: white;
+    padding: 12px; /* Reducir el padding */
+    font-size: 14px; /* Reducir el tamaño del texto */
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px; /* Reducir el margen */
+}
+
+.register-form button:hover {
+    background: #2980b9;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 10px; /* Reducir el margen */
+    font-size: 13px; /* Reducir el tamaño del texto */
+}
+
+.register-link a {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .register-box {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .register-image {
+        display: none;
+    }
+}
+
+.login-image {
+    flex: 1;
+    background-color: #eaf6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px; /* Reducir el padding */
+}
+
+.login-image img {
+    max-width: 100%;
+    height: auto;
+}

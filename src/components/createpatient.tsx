@@ -1,7 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { CreatePatient } from "../patients/application/create_patients";
 import { PatientRepository } from "../patients/infrastructure/PatientRepository";
-import "../styles/home.css"; // Importa tu archivo de estilos
+import "../styles/createpa.css"; // Importa tu archivo de estilos
 
 export default function CreatePatientForm() {
   const [formData, setFormData] = useState({
@@ -9,9 +10,10 @@ export default function CreatePatientForm() {
     apellido: "",
     edad: "",
     genero: "",
-    numeroContacto: "", // 🔹 Ahora coincide con el name del input
+    numeroContacto: "", 
   });
 
+  const navigate = useNavigate();
   const patientRepository = new PatientRepository();
   const createPatientUseCase = new CreatePatient(patientRepository);
 
@@ -27,12 +29,11 @@ export default function CreatePatientForm() {
         apellido: formData.apellido,
         edad: Number(formData.edad),
         genero: formData.genero,
-        numero_contacto: formData.numeroContacto, // 🔹 Ahora coincide con la estructura esperada
+        numero_contacto: formData.numeroContacto, 
       });
 
       alert("Paciente creado exitosamente");
 
-      // Reiniciar el formulario
       setFormData({ nombre: "", apellido: "", edad: "", genero: "", numeroContacto: "" });
     } catch (error) {
       console.error("Error al crear paciente", error);
@@ -42,7 +43,7 @@ export default function CreatePatientForm() {
 
   return (
     <div className="create-user-container">
-      <h2 className="title">Crear Expediente</h2>
+      <h2 className="title">Crear Paciente</h2>
       <form onSubmit={handleSubmit} className="form-container">
         <h3 className="subtitle">DATOS PERSONALES</h3>
 
@@ -62,6 +63,7 @@ export default function CreatePatientForm() {
         <input type="text" name="numeroContacto" value={formData.numeroContacto} onChange={handleChange} required />
 
         <button type="submit" className="submit-button">CREAR</button>
+        <button type="button" className="back-button" onClick={() => navigate(-1)}>REGRESAR</button>
       </form>
     </div>
   );
