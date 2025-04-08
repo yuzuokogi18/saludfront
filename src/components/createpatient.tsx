@@ -1,8 +1,9 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"; 
 import { CreatePatient } from "../patients/application/create_patients";
 import { PatientRepository } from "../patients/infrastructure/PatientRepository";
-import "../styles/createpa.css"; // Importa tu archivo de estilos
+import "../styles/createpa.css";
 
 export default function CreatePatientForm() {
   const [formData, setFormData] = useState({
@@ -31,13 +32,28 @@ export default function CreatePatientForm() {
         genero: formData.genero,
         numero_contacto: formData.numeroContacto, 
       });
+      await Swal.fire({
+        icon: "success",
+        title: "Paciente creado exitosamente",
+        html: `
+          <p><strong>Nombre:</strong> ${formData.nombre}</p>
+          <p><strong>Apellido:</strong> ${formData.apellido}</p>
+          <p><strong>Edad:</strong> ${formData.edad}</p>
+          <p><strong>Género:</strong> ${formData.genero}</p>
+          <p><strong>Teléfono:</strong> ${formData.numeroContacto}</p>
+        `,
+        confirmButtonText: "Aceptar",
+      });
 
-      alert("Paciente creado exitosamente");
-
+      // Limpiar el formulario
       setFormData({ nombre: "", apellido: "", edad: "", genero: "", numeroContacto: "" });
     } catch (error) {
       console.error("Error al crear paciente", error);
-      alert("Hubo un error al crear el paciente");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Hubo un error al crear el paciente",
+      });
     }
   };
 

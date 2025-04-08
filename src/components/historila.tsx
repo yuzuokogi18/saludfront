@@ -1,9 +1,12 @@
+// src/pages/Historial.tsx
+
 import React, { useState, useEffect } from "react";
 import { GetAllPatients } from "../patients/application/get_all_patients";
 import { PatientRepository } from "../patients/infrastructure/PatientRepository";
 import { Patient } from "../patients/domain/Patient";
 import { useNavigate } from "react-router-dom";
-import { jsPDF } from "jspdf"; // Importamos jsPDF
+import { jsPDF } from "jspdf";
+import { connectPatientSocket } from "../websocket/patientSocket";
 import "../styles/historial.css";
 
 const patientRepository = new PatientRepository();
@@ -14,6 +17,7 @@ const Historial: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [showPatients, setShowPatients] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +29,17 @@ const Historial: React.FC = () => {
         console.error("Error al obtener pacientes:", error);
       }
     };
-    fetchPatients();
+
+    fetchPatients(); // Carga inicial
+
+    const socket = connectPatientSocket(() => {
+      console.log("🔄 Cambios detectados en pacientes. Refrescando...");
+      fetchPatients(); // Recarga cuando hay cambios
+    });
+
+    return () => {
+      socket.close(); // Limpieza al desmontar
+    };
   }, []);
 
   const filteredPatients = patients.filter((patient) =>
@@ -42,34 +56,30 @@ const Historial: React.FC = () => {
   const handleGeneratePDF = () => {
     if (selectedPatient) {
       const doc = new jsPDF();
-
-      // Agregamos el título
       doc.setFontSize(18);
       doc.text("Información del Paciente", 20, 20);
-
-      // Agregamos la información del paciente
       doc.setFontSize(12);
       doc.text(`Nombre: ${selectedPatient.nombre} ${selectedPatient.apellido}`, 20, 30);
       doc.text(`Edad: ${selectedPatient.edad}`, 20, 40);
       doc.text(`Género: ${selectedPatient.genero}`, 20, 50);
       doc.text(`Contacto: ${selectedPatient.numero_contacto}`, 20, 60);
-
-      // Agregar signos vitales (puedes actualizarlos según corresponda)
-      doc.text(`Temperatura: 36.5°C`, 20, 70);
-      doc.text(`Peso: 70kg`, 20, 80);
-      doc.text(`Estatura: 1.75m`, 20, 90);
+      doc.text(`Temperatura: 31.5°C`, 20, 70);
+      doc.text(`Peso: 72kg`, 20, 80);
+      doc.text(`Estatura: 1.63m`, 20, 90);
       doc.text(`Ritmo cardiaco: 72bpm`, 20, 100);
 
-      // Generamos el PDF
       doc.save(`informacion_paciente_${selectedPatient.idUsuario}.pdf`);
     }
   };
+
   return (
     <div className="historial-containers">
-      <h1 className="title-centereds">
-        Historial del Paciente
-      </h1>
-  
+      <button onClick={() => navigate(-1)} className="btn-regresar">
+        ⬅️ Regresar
+      </button>
+
+      <h1 className="title-centereds">Historial del Paciente</h1>
+
       <div className="search-bar">
         <input
           type="text"
@@ -79,16 +89,40 @@ const Historial: React.FC = () => {
         />
         <button>🔍</button>
       </div>
-  
-      <div className="patient-list">
-        {filteredPatients.map((patient) => (
-          <div key={patient.idUsuario} className="patient-card">
-            <h3>{`${patient.nombre} ${patient.apellido}`}</h3>
-            <button onClick={() => handleViewMore(patient)}>Ver Más</button>
-          </div>
-        ))}
-      </div>
-  
+
+      <label
+        onClick={() => setShowPatients(!showPatients)}
+        className="toggle-patient-list"
+      >
+        📋 Ver Lista de Pacientes
+      </label>
+
+      {showPatients && (
+        <div className="patient-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredPatients.map((patient) => (
+                <tr key={patient.idUsuario}>
+                  <td>{patient.nombre} {patient.apellido}</td>
+                  <td>{patient.edad}</td>
+                  <td className="actions-cell">
+                    <button onClick={() => handleViewMore(patient)}>Ver Más</button>
+                    <button onClick={() => navigate(`/historial/${patient.idUsuario}`)}>Ver Historial</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       {showModal && selectedPatient && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -96,16 +130,14 @@ const Historial: React.FC = () => {
             <p><strong>Edad:</strong> {selectedPatient.edad}</p>
             <p><strong>Género:</strong> {selectedPatient.genero}</p>
             <p><strong>Contacto:</strong> {selectedPatient.numero_contacto}</p>
-  
-            {/* Aquí puedes poner los signos vitales reales, por ahora son estáticos */}
+
             <p><strong>Temperatura:</strong> 36.5°C</p>
             <p><strong>Peso:</strong> 70kg</p>
             <p><strong>Estatura:</strong> 1.75m</p>
             <p><strong>Ritmo cardiaco:</strong> 72bpm</p>
-  
+
             <div className="modal-buttons">
               <button onClick={handleGeneratePDF}>📄 Generar PDF</button>
-              <button onClick={() => navigate(`/historial/${selectedPatient.idUsuario}`)}>📁 Ver Historial</button>
               <button onClick={() => setShowModal(false)}>❌ Cerrar</button>
             </div>
           </div>
@@ -113,7 +145,6 @@ const Historial: React.FC = () => {
       )}
     </div>
   );
-  
 };
 
 export default Historial;

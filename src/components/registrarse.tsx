@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"; 
 import { User } from "../users/domain/User";
 import "../styles/register.css";
 
@@ -8,7 +9,7 @@ interface RegisterFormProps {
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
-  const navigate = useNavigate(); // Hook para redireccionar
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,13 +17,28 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
   const [rol, setRol] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
-      alert("Las contraseñas no coinciden");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden",
+      });
       return;
     }
+
     onRegister({ name, username, password, rol, email });
+
+    await Swal.fire({
+      icon: "success",
+      title: "¡Registro exitoso!",
+      text: "Tu cuenta ha sido creada correctamente.",
+      confirmButtonText: "Ir al login",
+    });
+
+    navigate("/login");
   };
 
   return (
@@ -34,26 +50,79 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
         <div className="register-form">
           <h2>SIGN IN</h2>
           <form onSubmit={handleSubmit}>
-            <label>Name</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+            <div className="form-row">
+              <div className="form-group">
+                <label>Name</label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Username</label>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
 
-            <label>Username</label>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+            <div className="form-row">
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Confirm Password</label>
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
 
-            <label>Password</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-
-            <label>Confirm Password</label>
-            <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-
-            <label>Rol</label>
-            <input type="text" value={rol} onChange={(e) => setRol(e.target.value)} required />
-
-            <label>Email</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <div className="form-row">
+              <div className="form-group">
+                <label>Rol</label>
+                <select
+                  value={rol}
+                  onChange={(e) => setRol(e.target.value)}
+                  required
+                >
+                  <option value="">Selecciona un rol</option>
+                  <option value="admin">Administrador</option>
+                  <option value="medico">Médico</option>
+                  
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
 
             <button type="submit">REGISTRARSE</button>
-            <button type="button" className="back-button" onClick={() => navigate("/login")}>
+            <button
+              type="button"
+              className="back-button"
+              onClick={() => navigate("/login")}
+            >
               REGRESAR
             </button>
           </form>

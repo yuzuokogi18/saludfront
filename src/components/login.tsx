@@ -14,11 +14,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     e.preventDefault();
     onLogin(new UserLogIn(username, password));
 
-    // Simulando un token de autenticación
-    localStorage.setItem('authToken', 'your-auth-token'); // Aquí pones el token real de la API
 
-    // Redirigir a la página principal después de login
-    window.location.href = '/'; // Redirige a la página principal
+    window.location.href = '/'; 
   };
 
   return (

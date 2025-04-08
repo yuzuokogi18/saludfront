@@ -8,14 +8,11 @@ const RegistrarsePage = () => {
   const saveUserCase = new SaveUserCase(userRepository);
 
   const handleRegister = async (user: Omit<User, "id">) => {
-    console.log("Enviando usuario:", user); 
     try {
-      const newUser = await saveUserCase.execute(user);
-      console.log("Usuario registrado:", newUser);
-      alert("Registro exitoso");
+      await saveUserCase.execute(user); // ✅ usamos saveUserCase y user
+      console.log("Usuario registrado con éxito");
     } catch (error) {
       console.error("Error al registrar usuario:", error);
-      alert("Error en el registro");
     }
   };
 

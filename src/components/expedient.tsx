@@ -5,6 +5,7 @@ import { PatientRepository } from "../patients/infrastructure/PatientRepository"
 import { Case } from "../cases/domain/Case";
 import { CaseRepository } from "../cases/infrastructure/CaseRepository";
 import jsPDF from "jspdf";
+import axios from "axios"; // 👈 Importamos Axios
 import "../styles/expedient.css";
 
 const PatientVitals: React.FC = () => {
@@ -75,7 +76,8 @@ const PatientVitals: React.FC = () => {
         setIsEditing(false);
       } catch (error) {
         console.error("Error updating patient data:", error);
-        if (error.response) {
+
+        if (axios.isAxiosError(error) && error.response) {
           console.error("Respuesta del servidor:", error.response.data);
         }
       }

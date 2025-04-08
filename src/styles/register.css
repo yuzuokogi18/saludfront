@@ -4,120 +4,237 @@
     justify-content: center;
     height: 100vh;
     background-color: #f8f9fc;
-}
-
-.register-box {
+  }
+  
+  .register-box {
     display: flex;
+    flex-direction: row;
     background: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
-    width: 650px; /* Reducir el tamaño de la caja */
-    height: auto;
-}
-
-.register-image {
-    flex: 1;
-    background: url('/ruta-a-tu-imagen.png') no-repeat center center;
-    background-size: cover;
-}
-
-.register-form {
-    flex: 1;
-    padding: 30px; /* Reducir el padding */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-}
-
-.register-form h2 {
-    font-size: 22px; /* Reducir el tamaño del texto */
-    font-weight: bold;
-    margin-bottom: 15px; /* Reducir el margen */
-    text-align: center;
-    color: #333;
-}
-
-.register-form label {
-    font-size: 13px; /* Reducir el tamaño del texto */
-    font-weight: 600;
-    margin-bottom: 5px;
-    display: block;
-    color: #555;
-}
-
-.register-form input {
-    width: calc(100% - 20px); 
-    padding: 10px; /* Reducir el padding */
-    margin-bottom: 10px; /* Reducir el margen */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    outline: none;
-    transition: border 0.3s;
-}
-
-.register-form input:focus {
-    border-color: #3498db;
-}
-
-.register-form button {
-    width: 100%;
-    background: #3498db;
-    color: white;
-    padding: 12px; /* Reducir el padding */
-    font-size: 14px; /* Reducir el tamaño del texto */
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-top: 10px; /* Reducir el margen */
-}
-
-.register-form button:hover {
-    background: #2980b9;
-}
-
-.register-link {
-    text-align: center;
-    margin-top: 10px; /* Reducir el margen */
-    font-size: 13px; /* Reducir el tamaño del texto */
-}
-
-.register-link a {
-    color: red;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.register-link a:hover {
-    text-decoration: underline;
-}
-
-/* Responsividad para pantallas pequeñas */
-@media (max-width: 768px) {
-    .register-box {
-        flex-direction: column;
-        width: 90%;
-    }
-
-    .register-image {
-        display: none;
-    }
-}
-
-.login-image {
+    width: 650px;
+    max-width: 95%;
+  }
+  
+  .register-image,
+  .login-image {
     flex: 1;
     background-color: #eaf6ff;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px; /* Reducir el padding */
-}
-
-.login-image img {
+    padding: 20px;
+  }
+  
+  .login-image img {
     max-width: 100%;
     height: auto;
-}
+  }
+  
+  .register-form {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .register-form h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    flex: 1;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .register-form label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+    word-break: break-word;
+  }
+  
+  .register-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+    box-sizing: border-box;
+  }
+  
+  .register-form input:focus {
+    border-color: #3498db;
+  }
+  
+  .register-form button {
+    width: 100%;
+    background: #3498db;
+    color: white;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+  }
+  
+  .register-form button:hover {
+    background: #2980b9;
+  }
+  
+  .back-button {
+    background-color: #e74c3c;
+  }
+  
+  .back-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  
+  .register-link a {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ✅ Responsividad para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .register-box {
+      flex-direction: column;
+      width: 90%;
+    }
+  
+    .register-image {
+      display: none;
+    }
+  
+    .register-form {
+      padding: 20px;
+    }
+  
+    .register-form h2 {
+      font-size: 20px;
+    }
+  
+    .register-form label {
+      font-size: 12px;
+    }
+  
+    .register-form input {
+      font-size: 13px;
+      padding: 8px;
+    }
+  
+    .register-form button {
+      font-size: 13px;
+      padding: 10px;
+    }
+  
+    .form-row {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .form-group {
+      width: 100%;
+    }
+  
+    .register-link {
+      font-size: 12px;
+    }
+  }
+  /* Estilos generales para el contenedor del formulario */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  /* Estilos para los grupos de formulario */
+  .form-group {
+    flex: 1;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para las etiquetas dentro del formulario */
+  .register-form label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+    word-break: break-word;
+  }
+  
+  /* Estilos específicos para el <select> */
+  .register-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+    box-sizing: border-box;
+  }
+  
+  /* Efecto de enfoque para el <select> */
+  .register-form select:focus {
+    border-color: #3498db;
+  }
+  
+  /* Estilos para el resto de los inputs */
+  .register-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+    box-sizing: border-box;
+  }
+  
+  /* Efecto de enfoque para los inputs */
+  .register-form input:focus {
+    border-color: #3498db;
+  }
+  

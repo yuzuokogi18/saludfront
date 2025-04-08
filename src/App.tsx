@@ -30,11 +30,11 @@ export const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {/* Componente que redirige al login si el usuario no está autenticado */}
+   
         <Route path="/login" element={isAuthenticated() ? <Navigate to="/" /> : <Login />} />
         <Route path="/register" element={isAuthenticated() ? <Navigate to="/" /> : <RegistrarsePage />} />
         
-        {/* Rutas protegidas */}
+  
         <Route 
           path="/" 
           element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />} 
@@ -55,8 +55,9 @@ export const App: React.FC = () => {
           path="/historial/:id" 
           element={isAuthenticated() ? <DetallePacientePage /> : <Navigate to="/login" />} 
         />
+          
 
-        {/* Ruta de redirección para login si el usuario está autenticado */}
+  
         <Route path="*" element={<LoginRedirect />} />
       </Routes>
     </Router>

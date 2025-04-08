@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const patientApi = axios.create({
-  baseURL: "http://localhost:8080/patients",
+  baseURL: "http://54.175.13.23:8080/patients",
   headers: {
     "Content-Type": "application/json",
   },

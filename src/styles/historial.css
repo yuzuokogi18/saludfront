@@ -205,4 +205,53 @@
   button:hover {
     background-color: #45a049;
   }
+  .patient-table table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+  }
+  
+  .patient-table th,
+  .patient-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .patient-table th {
+    background-color: #0033a0;
+    color: white;
+  }
+  
+  .patient-table tr:hover {
+    background-color: #f2f2f2;
+  }
+  .btn-regresar {
+    background-color: #0033a0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .btn-regresar:hover {
+    background-color: #001f5c;
+  }
+  
+  .toggle-patient-list {
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 60px;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: #0033a0;
+  }
+  
+  .actions-cell {
+    display: flex;
+    gap: 10px;
+  }
   

@@ -13,7 +13,7 @@ export const Sidebar: React.FC = () => {
       <Link to="/crear-expediente" className="menu-item">
         <li>
           <img src="/assets/crear.png" alt="Crear Expediente" />
-          <span>CREAR EXPEDIENTE</span>
+          <span>CREAR PACIENTE</span>
         </li>
       </Link>
 

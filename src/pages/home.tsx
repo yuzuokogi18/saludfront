@@ -88,17 +88,12 @@ export const Dashboard: React.FC = () => {
         </div>
 
         <div className="health-grid">
-          {patientData ? (
-            <>
-              <HealthCard title="Peso" value={`${patientData.peso} KG`} status="alerta" description="Peso registrado" />
-              <HealthCard title="Altura" value={`${patientData.estatura} CM`} status="optimo" description="Altura registrada" />
-              <HealthCard title="Ritmo Cardiaco" value={`${patientData.ritmoCardiaco} BPM`} status="alerta" description="Ritmo cardíaco actual" />
-              <HealthCard title="Temperatura" value={`${patientData.temperatura}°C`} status="critico" description="Temperatura corporal" />
-            </>
-          ) : (
-            <p>Cargando datos del paciente...</p>
-          )}
+          <HealthCard title="Peso" value="72 KG" status="alerta" description="Peso ligeramente elevado" />
+          <HealthCard title="Altura" value="163 CM" status="optimo" description="Estatura normal" />
+          <HealthCard title="Ritmo Cardiaco" value="85 BPM" status="alerta" description="Ritmo ligeramente acelerado" />
+          <HealthCard title="Temperatura" value="31.5°C" status="optimo" description="temperatura normal" />
         </div>
+
 
 <div className="patient-selection">
   <label htmlFor="patient-select">Paciente:</label>
