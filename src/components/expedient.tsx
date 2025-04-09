@@ -5,7 +5,7 @@ import { PatientRepository } from "../patients/infrastructure/PatientRepository"
 import { Case } from "../cases/domain/Case";
 import { CaseRepository } from "../cases/infrastructure/CaseRepository";
 import jsPDF from "jspdf";
-import axios from "axios"; // 👈 Importamos Axios
+import axios from "axios"; 
 import "../styles/expedient.css";
 
 const PatientVitals: React.FC = () => {
