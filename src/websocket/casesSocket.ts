@@ -9,7 +9,7 @@ export class WebSocketService {
   }
 
   private connect() {
-    this.socket = new WebSocket("ws://54.89.252.220:8081/cases/");
+    this.socket = new WebSocket("ws://44.207.1.175:8081/cases/");
 
     this.socket.onopen = () => {
       console.log("Conexión WebSocket establecida");

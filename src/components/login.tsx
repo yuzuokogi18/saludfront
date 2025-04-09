@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { UserLogIn } from "../users/domain/User";
 import "../styles/login.css";
-import { useNavigate } from "react-router-dom"; // Importa el hook
 
 interface LoginFormProps {
   onLogin: (credentials: UserLogIn) => void;
@@ -10,14 +9,10 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Hook para navegación
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onLogin(new UserLogIn(username, password));
-
-    // Redirige usando navigate en lugar de window.location.href
-    navigate('/');
+    e.preventDefault(); // Prevenir comportamiento por defecto del formulario
+    onLogin(new UserLogIn(username, password)); // Pasar las credenciales al padre
   };
 
   return (

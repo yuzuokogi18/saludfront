@@ -66,15 +66,19 @@ export class UserRepository implements IUserRepository {
 
   async logIn(credentials: { username: string; password: string }): Promise<User> {
     const response = await userApi.post("/login", credentials);
+    const userData = response.data.user;
+    const token = response.data.token;
+  
     return new User(
-      response.data.id,
-      response.data.name,
-      response.data.rol,
-      response.data.email,
-      response.data.password, 
-      response.data.username
+      userData.id,
+      userData.name,
+      userData.rol,
+      userData.email,
+      userData.username,
+      token
     );
   }
+  
 
   async update(id: number, updates: Partial<Omit<User, "id">>): Promise<User> {
     const response = await userApi.put(`/${id}`, updates);
