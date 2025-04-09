@@ -5,7 +5,7 @@ export class Case {
       public temperatura: number,
       public peso: number,
       public estatura: number,
-      public ritmoCardiaco: number,
+      public ritmo_cardiaco: number,
       public fechaRegistro: Date
     ) {}
   }

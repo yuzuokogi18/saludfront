@@ -14,11 +14,11 @@ export const Dashboard: React.FC = () => {
   const [patientData, setPatientData] = useState<Case | null>(null);
   const [patients, setPatients] = useState<Patient[]>([]);
   const [selectedPatientId, setSelectedPatientId] = useState<number | null>(null);
+  const [currentPatient, setCurrentPatient] = useState<any | null>(null);
 
   const patientRepository = new PatientRepository();
   const caseRepository = new CaseRepository();
 
- 
   useEffect(() => {
     const fetchPatientData = async () => {
       try {
@@ -37,7 +37,6 @@ export const Dashboard: React.FC = () => {
     fetchPatientData();
   }, []);
 
-  
   useEffect(() => {
     const fetchPatients = async () => {
       try {
@@ -58,7 +57,6 @@ export const Dashboard: React.FC = () => {
       console.log("Datos recibidos de WebSocket:", data);  
       const newCaseData = JSON.parse(data);  
 
-    
       setPatientData(prevData => {
         if (prevData?.idExpediente === newCaseData.idExpediente) {
           console.log("Actualizando datos del caso existente");
@@ -77,9 +75,8 @@ export const Dashboard: React.FC = () => {
       });
     };
 
-    console.log("Registrando listener de WebSocket");  // Confirmación de que el listener se registra
+    console.log("Registrando listener de WebSocket");
 
-    // Registra el listener para los nuevos casos
     webSocketService.onNewCase(handleNewCase);
 
     return () => {
@@ -96,7 +93,7 @@ export const Dashboard: React.FC = () => {
       patientData.temperatura,
       patientData.peso,
       patientData.estatura,
-      patientData.ritmoCardiaco,
+      patientData.ritmo_cardiaco,
       new Date()
     );
 
@@ -109,8 +106,20 @@ export const Dashboard: React.FC = () => {
     }
   };
 
-  // Log para depurar el estado de patientData
-  console.log("Paciente actual:", patientData); // Verificar datos antes de la renderización
+  console.log("Paciente actual:", patientData);
+
+  const handleSaveCurrentPatient = (currentId: number) => {
+    const selectedPatient = patients.find(patient => patient.idUsuario === currentId);
+    
+    if (selectedPatient) {
+      setCurrentPatient(selectedPatient);
+      console.log("Paciente actual seleccionado:", selectedPatient);
+    } else {
+      console.error("Paciente no encontrado");
+    }
+  };
+
+  
 
   return (
     <div className="dashboard">
@@ -146,8 +155,8 @@ export const Dashboard: React.FC = () => {
           />
           <HealthCard 
             title="Ritmo Cardiaco" 
-            value={`${patientData?.ritmoCardiaco ?? "0"} BPM`} 
-            status={patientData?.ritmoCardiaco && patientData.ritmoCardiaco > 100 ? "alerta" : "optimo"} 
+            value={`${patientData?.ritmo_cardiaco ?? "0"} BPM`} 
+            status={patientData?.ritmo_cardiaco && patientData.ritmo_cardiaco > 100 ? "alerta" : "optimo"} 
             description="Ritmo ligeramente acelerado"
           />
           <HealthCard 
@@ -163,7 +172,11 @@ export const Dashboard: React.FC = () => {
           <select
             id="patient-select"
             value={selectedPatientId ?? ''}
-            onChange={(e) => setSelectedPatientId(Number(e.target.value))}
+            onChange={(e) => {
+              const selectedId = Number(e.target.value);
+              setSelectedPatientId(selectedId);
+              handleSaveCurrentPatient(selectedId);  // Llama a la función con el id seleccionado
+            }}
           >
             <option value="">-- Selecciona --</option>
             {patients.map((patient) => (

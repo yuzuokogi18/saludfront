@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 
 
 export const Sidebar: React.FC = () => {
+  const handleCloseSesion = () => {
+    localStorage.removeItem("authToken")
+    localStorage.removeItem("myUserName")
+  }
+
   return (
     <div className="sidebar">
     <ul className="sidebar-menu">
@@ -28,6 +33,10 @@ export const Sidebar: React.FC = () => {
           <span>HISTORIAL</span>
         </li>
       </Link>
+
+      <button className="buttonCloseSesion" onClick={handleCloseSesion}>
+        Cerrar Sesión
+      </button>
     </ul>
   </div>
   

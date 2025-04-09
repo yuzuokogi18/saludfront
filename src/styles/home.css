@@ -199,3 +199,95 @@ body {
       font-size: 0.9rem;
     }
     
+/* Sidebar Styles */
+.sidebar {
+  width: 240px;
+  background: white;
+  border-right: 2px solid #002c77;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra todo el contenido */
+  width: 100%;
+  padding: 20px 0;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.logo-container img {
+  max-width: 145px;
+  height: auto;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+  margin-bottom: 25px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+  transform: scale(1.05);
+}
+
+.menu-item li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-item img {
+  width: 110px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.menu-item span {
+  color: #002c77;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+.buttonCloseSesion {
+  width: 180px;
+  padding: 10px 20px;
+  background-color: #002c77;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto; /* Empuja el botón hacia abajo */
+  margin-bottom: 20px; /* Espacio en la parte inferior */
+}
+
+.buttonCloseSesion:hover {
+  background-color: #0044aa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
