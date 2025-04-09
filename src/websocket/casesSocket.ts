@@ -9,14 +9,14 @@ export class WebSocketService {
   }
 
   private connect() {
-    this.socket = new WebSocket("ws://3.91.184.130:8081/cases/");
+    this.socket = new WebSocket("ws://54.89.252.220:8081/cases/");
 
     this.socket.onopen = () => {
       console.log("Conexión WebSocket establecida");
     };
 
     this.socket.onmessage = (event) => {
-      console.log("Mensaje recibido del servidor:", event.data);
+      console.log("Mensaje recibido del servidor:", event.data);  // Log para verificar los mensajes
       this.listeners.forEach((listener) => listener(event.data));
     };
 
@@ -30,10 +30,11 @@ export class WebSocketService {
     };
   }
 
-  // Método para registrar un listener (similar a un evento)
+  // Método para registrar un listener
   onNewCase(listener: WebSocketListener) {
     if (this.socket?.readyState === WebSocket.OPEN) {
       this.listeners.push(listener);
+      console.log("Listener de WebSocket registrado");  // Log para confirmar que el listener fue agregado
     } else {
       console.error("WebSocket no está abierto.");
     }

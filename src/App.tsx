@@ -11,7 +11,7 @@ import './styles/home.css';
 
 // Verifica si el usuario está autenticado
 const isAuthenticated = () => {
-  return localStorage.getItem('authToken') !== null;
+  return localStorage.getItem('authToken') !== null; // O puedes usar cookies, dependiendo de cómo manejes la autenticación
 };
 
 const LoginRedirect: React.FC = () => {
@@ -30,11 +30,11 @@ export const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-   
+        {/* Rutas de login y registro */}
         <Route path="/login" element={isAuthenticated() ? <Navigate to="/" /> : <Login />} />
         <Route path="/register" element={isAuthenticated() ? <Navigate to="/" /> : <RegistrarsePage />} />
         
-  
+        {/* Ruta principal y otras rutas protegidas */}
         <Route 
           path="/" 
           element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />} 
@@ -55,9 +55,8 @@ export const App: React.FC = () => {
           path="/historial/:id" 
           element={isAuthenticated() ? <DetallePacientePage /> : <Navigate to="/login" />} 
         />
-          
 
-  
+        {/* Ruta de redirección si no coincide ninguna */}
         <Route path="*" element={<LoginRedirect />} />
       </Routes>
     </Router>

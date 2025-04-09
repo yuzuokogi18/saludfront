@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const caseApi = axios.create({
-  baseURL: "http://54.175.13.23:8080/medical",
+  baseURL: "http://100.28.173.85:8080/cases",
   headers: {
     "Content-Type": "application/json",
   },
